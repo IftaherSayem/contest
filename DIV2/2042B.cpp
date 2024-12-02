@@ -57,28 +57,23 @@ int main()
     while(n--)
     {
         int a,b;
-        cin >> a >> b;
+        cin >> a;
         vector <int>ar(a);
-        int to=0;
+        map<int,int>mp;
         for(int i=0;i<a;i++)
         {
             cin >> ar[i];
-            to+=ar[i];
+            mp[ar[i]]++;
         }
-        sort(ar.rbegin(),ar.rend());
-        int sum=0;
-        bool chk=false;
-        for (int i=0;i<a;i++)
+        int co=0;
+        for (auto it:mp)
         {
-            sum+=ar[i];
-            if(sum>b)
+            if(it.second==1)
             {
-                sum-=ar[i];
-                cout << b-sum << el;
-                chk=true;
-                break;
+                co++;
             }
         }
-        if(!chk) cout << max(0,b-sum) << el;
+        int res=((1+co)/2)*2 + mp.size()-co;
+        cout << res << el;
     }
 }
